@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<br>
+<br>
+<br>
+
+<form action="{% url 'thanks_page' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>ОТПРАВИТЬ</button>
+</form>
+
+<br>
+<br>
+<br>
+
+{% if object_list %}
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Дата</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+    </tr>
+{% for obj in object_list %}
+    <tr>
+        <th><h2>{{ obj.id }}</h2></th>
+        <th><h2>{{ obj.order_dt }}</h2></th>
+        <th><h2>{{ obj.order_name }}</h2></th>
+        <th><h2>{{ obj.order_phone }}</h2></th>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<h1>Нет данных!</h1>
+{% endif %}
+
+</body>
+</html>
